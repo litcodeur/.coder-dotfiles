@@ -1,3 +1,7 @@
+# This is required for correct glyphs rendering
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 if [[ -f "/opt/homebrew/bin/brew" ]] then
   # If you're using macOS, you'll want this enabled
   eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -17,7 +21,7 @@ fi
 source "${ZINIT_HOME}/zinit.zsh"
 
 # Source Oh my posh
-eval "$(oh-my-posh init zsh --config $HOME/omp.toml)"
+eval "$(oh-my-posh init zsh --config $HOME/.config/omp/omp.toml)"
 
 # Add in zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
@@ -65,3 +69,7 @@ eval "$(zoxide init --cmd cd zsh)"
 alias ls='ls --color'
 alias c='clear'
 alias rsh="source ~/.zshrc"
+
+zcodei() {
+  _result="$(zoxide query --interactive -- "$@")" && code "$_result"
+}}
